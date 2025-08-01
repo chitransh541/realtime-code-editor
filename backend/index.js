@@ -1,6 +1,7 @@
 import express from 'express';
 import http from 'http';
 import { Server } from "socket.io";
+import path from 'path'
 
 const app = express();
 const server = http.createServer(app);
@@ -110,6 +111,13 @@ io.on("connection", (socket) => {
 });
 
 const port = process.env.PORT || 5000;
+
+const __dirname = path.resolve()
+app.use(express.static(path.join(__dirname,"/frontend/dist")))
+app.get("*",(req,res)=>{
+    res.sendFile(path.join(__dirname,"frontend","dist","index.html"))
+})
+
 server.listen(port, () => {
     console.log('Server is working on port', port);
 });
