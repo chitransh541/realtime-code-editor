@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://realtime-code-editor-2-689b.onrender.com");
 
 socket.on("connect", () => {
   console.log("Connected to backend with socket id:", socket.id);
